@@ -160,8 +160,8 @@
       (when (not (= position (file-position file)))
 	(file-position file position)))
     (let* ((end (+ offset length))
-           (num-bytes-read (read-sequence b file :start offset :end end)))
-      (unless (= num-bytes-read end)
+           (position (read-sequence b file :start offset :end end)))
+      (unless (= position end)
 	(error "End of file error while reading ~S" file))))
   (values))
 
