@@ -159,8 +159,9 @@
     (let ((position (pos self)))
       (when (not (= position (file-position file)))
 	(file-position file position)))
-    (let ((num-bytes-read (read-sequence b file :start offset :end (+ offset length))))
-      (unless (= num-bytes-read length)
+    (let* ((end (+ offset length))
+           (num-bytes-read (read-sequence b file :start offset :end end)))
+      (unless (= num-bytes-read end)
 	(error "End of file error while reading ~S" file))))
   (values))
 
